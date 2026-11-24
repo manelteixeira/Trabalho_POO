@@ -3,14 +3,11 @@ package biblioteca;
 public abstract class Pessoa {
 	
 	private String nome;
-	private String documento;
-	private String email;
+	private String cpf; 
 	
-	protected Pessoa(String nome, String documento, String email) {
-		
-	this.nome = nome;
-	this.documento = documento;
-	this.email = email;
+	public Pessoa(String nome, String cpf) {
+		this.nome = nome;
+		this.cpf = cpf;
 	}
 
 	public String getNome() {
@@ -21,22 +18,14 @@ public abstract class Pessoa {
 		this.nome = nome;
 	}
 
-	public String getDocumento() {
-		return documento;
+	public String getCpf() {
+		return cpf;
 	}
 
-	public void setDocumento(String documento) {
-		this.documento = documento;
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
 	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-		
 	
+	public abstract void exibirDados();
 
 }
