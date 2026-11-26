@@ -57,9 +57,5 @@ public class Livro implements Identificavel{
 	public void setDisponivel(boolean disponivel) {
 		this.disponivel = disponivel;
 	}
-	
-	
-    
-    
 
 }
