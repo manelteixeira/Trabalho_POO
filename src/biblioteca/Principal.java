@@ -1,102 +1,159 @@
+
 package biblioteca;
 
 import java.util.Scanner;
 
 public class Principal {
 
-	public static void main(String[] args) {
+    public static void main(String[] args) {
 
-		// Cria o objeto responsável pelo funcionamento da biblioteca.
-		Biblioteca biblioteca = new Biblioteca();
+        // Cria o objeto responsável pelas operações da biblioteca.
+        Biblioteca biblioteca = new Biblioteca();
 
-		// Permite receber informações digitadas pelo usuário.
-		Scanner scanner = new Scanner(System.in);
+        // Cria o Scanner para receber os dados digitados pelo usuário.
+        Scanner scanner = new Scanner(System.in);
 
-		int opcao = 0;
+        // Controla a repetição do menu.
+        int opcao = 0;
 
-		// Mantém o menu funcionando até o usuário escolher sair.
-		while (opcao != 8) {
-			System.out.println("\n===== BIBLIOTECA FÁCIL =====");
-			System.out.println("1 - Cadastrar livro");
-			System.out.println("2 - Cadastrar leitor");
-			System.out.println("3 - Realizar empréstimo");
-			System.out.println("4 - Devolver livro");
-			System.out.println("5 - Listar livros");
-			System.out.println("6 - Listar leitores");
-			System.out.println("7 - Listar empréstimos");
-			System.out.println("8 - Sair");
-			System.out.print("Escolha uma opção: ");
+        // Mantém o sistema funcionando até o usuário escolher sair.
+        while (opcao != 11) {
 
-			// Lê a opção digitada pelo usuário.
-			String entrada = scanner.nextLine();
+            System.out.println("\n===== BIBLIOTECA FÁCIL =====");
+            System.out.println("1 - Cadastrar livro");
+            System.out.println("2 - Cadastrar leitor");
+            System.out.println("3 - Cadastrar funcionário");
+            System.out.println("4 - Realizar empréstimo");
+            System.out.println("5 - Devolver livro");
+            System.out.println("6 - Listar livros");
+            System.out.println("7 - Listar leitores");
+            System.out.println("8 - Listar empréstimos");
+            System.out.println("9 - Listar livros disponíveis");
+            System.out.println("10 - Listar pessoas");
+            System.out.println("11 - Sair");
+            System.out.print("Escolha uma opção: ");
 
-			try {
-				opcao = Integer.parseInt(entrada);
-			} catch (NumberFormatException e) {
-				opcao = 0;
-			}
+            // Lê a opção e trata entradas que não sejam números.
+            String entrada = scanner.nextLine();
 
-			// Verifica a opção escolhida.
-			switch (opcao) {
+            try {
+                opcao = Integer.parseInt(entrada);
+            } catch (NumberFormatException e) {
+                opcao = 0;
+            }
 
-			case 8:
-				System.out.println("Encerrando o sistema...");
-				break;
+            switch (opcao) {
 
-			case 0:
-				System.out.println("Opção inválida!");
-				break;
+                case 1:
+                    // Recebe os dados e cadastra um novo livro.
+                    System.out.print("Digite o título do livro: ");
+                    String titulo = scanner.nextLine();
 
-			case 1:
-				// Solicita os dados necessários para cadastrar um livro.
-				System.out.print("Digite o título do livro: ");
-				String titulo = scanner.nextLine();
+                    System.out.print("Digite o autor do livro: ");
+                    String autor = scanner.nextLine();
 
-				System.out.print("Digite o autor do livro: ");
-				String autor = scanner.nextLine();
+                    System.out.print("Digite o código do livro: ");
+                    String codigo = scanner.nextLine();
 
-				System.out.print("Digite o código do livro: ");
-				String codigo = scanner.nextLine();
+                    Livro livro = new Livro(titulo, autor, codigo);
+                    biblioteca.cadastrarLivro(livro);
+                    break;
 
-				// Cria um objeto Livro com os dados informados.
-				Livro livro = new Livro(titulo, autor, codigo);
+                case 2:
+                    // Recebe os dados e cadastra um novo leitor.
+                    System.out.print("Digite o nome do leitor: ");
+                    String nome = scanner.nextLine();
 
-				// Envia o livro para a biblioteca realizar o cadastro.
-				biblioteca.cadastrarLivro(livro);
-				break;
+                    System.out.print("Digite o CPF do leitor: ");
+                    String cpf = scanner.nextLine();
 
-			case 2:
-				// Solicita os dados do leitor.
-				System.out.print("Digite o nome do leitor: ");
-				String nome = scanner.nextLine();
+                    Leitor leitor = new Leitor(nome, cpf);
+                    biblioteca.cadastrarLeitor(leitor);
+                    break;
 
-				System.out.print("Digite o CPF do leitor: ");
-				String cpf = scanner.nextLine();
+                case 3:
+                    // Recebe os dados e cadastra um funcionário.
+                    System.out.print("Digite o nome do funcionário: ");
+                    String nomeFuncionario = scanner.nextLine();
 
-				// Cria um novo objeto Leitor.
-				Leitor leitor = new Leitor(nome, cpf);
+                    System.out.print("Digite o CPF do funcionário: ");
+                    String cpfFuncionario = scanner.nextLine();
 
-				// Cadastra o leitor na biblioteca.
-				biblioteca.cadastrarLeitor(leitor);
-				break;
+                    System.out.print("Digite a matrícula: ");
+                    String matricula = scanner.nextLine();
 
-			case 5:
-				// Chama o método que exibe os livros cadastrados.
-				biblioteca.listarLivros();
-				break;
+                    System.out.print("Digite o cargo: ");
+                    String cargo = scanner.nextLine();
 
-			case 6:
-				// Chama o método que exibe os leitores cadastrados.
-				biblioteca.listarLeitores();
-				break;
+                    Funcionario funcionario = new Funcionario(
+                            nomeFuncionario, cpfFuncionario, matricula, cargo);
 
-			default:
-				System.out.println("Opção inválida!");
-				break;
+                    biblioteca.cadastrarFuncionario(funcionario);
+                    break;
 
-			}
-		}
-		scanner.close();
-	}
+                case 4:
+                    // Localiza o leitor e o livro para realizar o empréstimo.
+                    System.out.print("Digite o CPF do leitor: ");
+                    String cpfEmprestimo = scanner.nextLine();
 
+                    System.out.print("Digite o código do livro: ");
+                    String codigoEmprestimo = scanner.nextLine();
+
+                    Leitor leitorEmprestimo =
+                            biblioteca.buscarLeitorPorCpf(cpfEmprestimo);
+
+                    Livro livroEmprestimo =
+                            biblioteca.buscarLivroPorCodigo(codigoEmprestimo);
+
+                    biblioteca.realizarEmprestimo(leitorEmprestimo, livroEmprestimo);
+                    break;
+
+                case 5:
+                    // Solicita o código do livro para realizar a devolução.
+                    System.out.print("Digite o código do livro: ");
+                    String codigoDevolucao = scanner.nextLine();
+
+                    biblioteca.devolverLivro(codigoDevolucao);
+                    break;
+
+                case 6:
+                    // Lista todos os livros cadastrados.
+                    biblioteca.listarLivros();
+                    break;
+
+                case 7:
+                    // Lista somente os leitores cadastrados.
+                    biblioteca.listarLeitores();
+                    break;
+
+                case 8:
+                    // Lista todos os empréstimos registrados.
+                    biblioteca.listarEmprestimos();
+                    break;
+
+                case 9:
+                    // Lista somente os livros disponíveis.
+                    biblioteca.listarLivros(true);
+                    break;
+
+                case 10:
+                    // Lista leitores e funcionários utilizando o polimorfismo.
+                    biblioteca.listarPessoas();
+                    break;
+
+                case 11:
+                    // Encerra a execução do sistema.
+                    System.out.println("Encerrando o sistema...");
+                    break;
+
+                default:
+                    // Trata opções inexistentes ou entradas inválidas.
+                    System.out.println("Opção inválida!");
+                    break;
+            }
+        }
+
+        // Fecha o Scanner ao encerrar o sistema.
+        scanner.close();
+    }
 }

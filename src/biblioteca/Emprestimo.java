@@ -31,8 +31,8 @@ public class Emprestimo {
 		// Cria a data prevista para devolução.
 		this.dataDevolucao = (Calendar) dataEmprestimo.clone();
 
-		// Adiciona dez dias ao prazo de devolução.
-		this.dataDevolucao.add(Calendar.DAY_OF_MONTH, 10);
+		// Calcula a data de devolução usando o prazo definido na Biblioteca.
+		this.dataDevolucao.add(Calendar.DAY_OF_MONTH, Biblioteca.PRAZO_DEVOLUCAO);
 
 		// Todo empréstimo começa com o livro não devolvido.
 		this.devolvido = false;

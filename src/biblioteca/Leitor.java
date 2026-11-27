@@ -12,8 +12,10 @@ public class Leitor extends Pessoa{
 	
 	@Override
 	public void exibirDados() {
-		System.out.println("Nome: "+ getNome());
-		System.out.println("CPF: " + getCpf());
+
+	    // Exibe nome e CPF utilizando o método protegido de Pessoa.
+	    exibirIdentificacaoBasica();
+
 	}
 
 }

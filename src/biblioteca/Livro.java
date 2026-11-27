@@ -16,6 +16,10 @@ public class Livro implements Identificavel{
 		this.codigo = codigo;
 		this.disponivel = true; // Todo livro começa disponível.
 	}
+	// Construtor sobrecarregado: permite cadastrar um livro sem informar o autor.
+	public Livro (String titulo, String codigo) {
+		this(titulo, "Não informado", codigo);
+	}
 
 	// Retorna a identificação do livro.
 	@Override

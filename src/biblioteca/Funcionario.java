@@ -39,10 +39,14 @@ public class Funcionario extends Pessoa {
 	// Sobrescreve o método abstrato definido na classe Pessoa.
 	@Override
 	public void exibirDados() {
-		System.out.println("Nome: " + getNome());
-	    System.out.println("CPF: " + getCpf());
+
+	    // Exibe os dados compartilhados da classe Pessoa.
+	    exibirIdentificacaoBasica();
+
+	    // Exibe os dados específicos do funcionário.
 	    System.out.println("Matrícula: " + getMatricula());
 	    System.out.println("Cargo: " + getCargo());
+
 	}
 
 }

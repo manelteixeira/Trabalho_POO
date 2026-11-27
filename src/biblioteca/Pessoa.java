@@ -6,7 +6,13 @@ public abstract class Pessoa {
 
 	// Atributos privados para proteger os dados da pessoa.
 	private String nome;
-	private String cpf; 
+	private String cpf;
+
+	// Exibe os dados básicos compartilhados pelas subclasses.
+	protected void exibirIdentificacaoBasica() {
+		System.out.println("Nome: " + nome);
+		System.out.println("CPF: " + cpf);
+	}
 
 	// Construtor utilizado para inicializar nome e CPF.
 	public Pessoa(String nome, String cpf) {
